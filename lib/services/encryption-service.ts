@@ -1,6 +1,28 @@
 import { PDFDocument } from "pdf-lib"
 import JSZip from "jszip"
-// @ts-ignore
+
+// Type declaration for pdf-encrypt
+declare module "pdf-encrypt" {
+  interface EncryptOptions {
+    userPassword?: string
+    ownerPassword?: string
+    permissions?: {
+      print?: boolean
+      modify?: boolean
+      copy?: boolean
+      annotate?: boolean
+    }
+  }
+  
+  function pdfEncrypt(
+    buffer: Buffer, 
+    options: EncryptOptions, 
+    callback: (err: Error | null, result?: Buffer) => void
+  ): void
+  
+  export default pdfEncrypt
+}
+
 import pdfEncrypt from "pdf-encrypt"
 
 export interface EncryptionOptions {
@@ -60,7 +82,7 @@ export class EncryptionService {
         })
       })
 
-      const blob = new Blob([encryptedBuffer], { type: "application/pdf" })
+      const blob = new Blob([new Uint8Array(encryptedBuffer)], { type: "application/pdf" })
       const fileName = file.name.replace('.pdf', '-encrypted.pdf')
 
       return {
