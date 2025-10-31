@@ -72,7 +72,7 @@ export default function HomePage() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">T</span>
             </div>
-            <h1 className="text-xl font-bold text-foreground">ToolBox</h1>
+            <h1 className="text-xl font-bold text-foreground">PePDF</h1>
           </div>
           <Link href="/login">
             <Button variant="outline">Iniciar Sesión</Button>
@@ -118,7 +118,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-border bg-card mt-16">
         <div className="container mx-auto px-4 py-8 text-center text-muted-foreground text-sm">
-          <p>© 2025 ToolBox. Todas las herramientas funcionan en tu navegador.</p>
+          <p>© 2025 PePDF. Todas las herramientas funcionan en tu navegador.</p>
         </div>
       </footer>
     </div>

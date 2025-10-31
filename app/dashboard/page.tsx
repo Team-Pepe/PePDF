@@ -82,7 +82,7 @@ export default function DashboardPage() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">T</span>
             </div>
-            <h1 className="text-xl font-bold text-foreground">ToolBox</h1>
+            <h1 className="text-xl font-bold text-foreground">PePDF</h1>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">

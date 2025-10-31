@@ -8,7 +8,7 @@ const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "ToolBox - Herramientas Rápidas",
+  title: "PePDF - Herramientas Rápidas",
   description: "Convierte, edita y optimiza tus archivos de forma rápida y sencilla",
     generator: 'v0.app'
 }

@@ -41,7 +41,7 @@ export default function LoginPage() {
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-xl">T</span>
               </div>
-              <CardTitle className="text-2xl">ToolBox</CardTitle>
+              <CardTitle className="text-2xl">PePDF</CardTitle>
             </div>
             <CardDescription>Ingresa tus credenciales para acceder a tu cuenta</CardDescription>
           </CardHeader>

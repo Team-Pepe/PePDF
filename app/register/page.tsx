@@ -45,7 +45,7 @@ export default function RegisterPage() {
               </div>
               <CardTitle className="text-2xl">Crear Cuenta</CardTitle>
             </div>
-            <CardDescription>Completa el formulario para crear tu cuenta en ToolBox</CardDescription>
+            <CardDescription>Completa el formulario para crear tu cuenta en PePDF</CardDescription>
           </CardHeader>
           <form onSubmit={handleRegister}>
             <CardContent className="space-y-4">

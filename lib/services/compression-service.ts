@@ -14,10 +14,9 @@ declare module "pdf-compressor" {
   }
   
   const pdfCompressor: PDFCompressor
-  export = pdfCompressor
 }
 
-import pdfCompressor from "pdf-compressor"
+import * as pdfCompressorModule from "pdf-compressor"
 
 export interface CompressionOptions {
   quality?: number // 0-100 for images and PDFs
@@ -86,7 +85,7 @@ export class CompressionService {
       
       // Try using pdf-compressor first for better compression
       try {
-        const compressedBuffer = await pdfCompressor.compress(arrayBuffer, {
+        const compressedBuffer = await (pdfCompressorModule as any).compress(arrayBuffer, {
           quality: quality / 100,
           level: pdfCompressionLevel
         })
