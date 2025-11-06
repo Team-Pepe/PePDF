@@ -1,5 +1,104 @@
 # PePDF - Herramientas de Conversión de Archivos
 
+## Backend Lambda (Auth + Archivos)
+
+Este proyecto incluye un backend minimalista en `lambda/` listo para desplegar en AWS Lambda (API Gateway HTTP API), usando Postgres (RDS) y S3. No usa JWT; emplea una cookie `HttpOnly` firmada para sesiones.
+
+### Esquema esperado en Postgres
+
+Usa tus tablas existentes:
+
+```
+CREATE TABLE users (
+  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  name TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  last_access TIMESTAMPTZ
+);
+
+CREATE TABLE files (
+  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  user_id BIGINT REFERENCES users(id),
+  name TEXT NOT NULL,
+  type TEXT NOT NULL,
+  size BIGINT NOT NULL,
+  s3_key TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  status TEXT NOT NULL
+);
+```
+
+La columna `password` almacena el hash en formato `scrypt:<salt_base64>:<hash_hex>`.
+
+### Endpoints
+
+- `POST /auth/register` — Crea usuario y devuelve sesión.
+- `POST /auth/login` — Inicia sesión.
+- `POST /auth/logout` — Cierra sesión (borra cookie).
+- `GET /auth/me` — Devuelve el usuario autenticado.
+- `POST /files/presign` — Genera URL firmada de subida a S3.
+- `POST /files/finalize` — Guarda metadatos del archivo.
+- `GET /files` — Lista archivos del usuario.
+- `GET /files/{id}/download` — Devuelve URL firmada de descarga.
+
+### Variables de entorno (Lambda)
+
+- `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `DB_SSL` (`true` por defecto)
+- `S3_BUCKET`, `S3_REGION`
+- `CORS_ORIGIN` (ej. `http://localhost:3000` en desarrollo)
+- `COOKIE_SECRET` (cadena secreta para firmar cookies)
+- `SESSION_TTL_DAYS` (por defecto `7`)
+- `SECURE_COOKIE` (`true` en producción con HTTPS)
+
+### Despliegue
+
+1. Ve a la carpeta `lambda/` y instala dependencias:
+   - `cd lambda`
+   - `npm install`
+2. Exporta tus variables de entorno o configura un archivo `.env` con tu herramienta preferida.
+3. Despliega con Serverless Framework:
+   - `npx serverless deploy`
+4. Obtén el `invokeUrl` de API Gateway para usarlo desde el frontend. Asegúrate de que `CORS_ORIGIN` coincida con el origen de tu aplicación.
+
+### Uso desde el frontend
+
+Realiza peticiones con `credentials: 'include'` para que la cookie de sesión viaje:
+
+```
+// Login
+await fetch('<invokeUrl>/auth/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, password }),
+  credentials: 'include'
+});
+
+// Presign
+const presign = await fetch('<invokeUrl>/files/presign', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name, type }),
+  credentials: 'include'
+}).then(r => r.json());
+
+await fetch(presign.uploadUrl, { method: 'PUT', body: blob, headers: { 'Content-Type': type } });
+
+await fetch('<invokeUrl>/files/finalize', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name, type, size: blob.size, s3Key: presign.s3Key }),
+  credentials: 'include'
+});
+```
+
+### Notas
+
+- Recomendado usar RDS Proxy para gestionar conexiones de Lambda a Postgres.
+- En producción, configura `SECURE_COOKIE=true` y usa HTTPS para que la cookie sea segura.
+- `CORS_ORIGIN` debe ser tu dominio frontend; en dev, `http://localhost:3000`.
+
 Aplicación web moderna para convertir, editar y optimizar archivos PDF e imágenes.
 
 ## Estructura del Proyecto
