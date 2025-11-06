@@ -12,7 +12,6 @@ app/
 │   ├── pdf-to-images/
 │   ├── images-to-pdf/
 │   ├── compress/
-│   ├── encrypt/
 │   ├── merge-pdf/
 │   └── remove-background/
 ├── tools/               # Rutas de Next.js
@@ -41,7 +40,6 @@ components/
 - **convertToWord**: Extrae texto de PDF y lo convierte
 - **convertToImages**: Convierte páginas PDF a imágenes (PNG, JPEG, WEBP)
 - **compress**: Reduce el tamaño de archivos PDF
-- **encrypt**: Protege PDFs con contraseña
 - **merge**: Combina múltiples PDFs en uno
 
 ### ImageService

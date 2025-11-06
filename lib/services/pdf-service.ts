@@ -31,16 +31,7 @@ export interface CompressPDFOptions {
   quality?: 'low' | 'medium' | 'high'
 }
 
-export interface EncryptPDFOptions {
-  file: File
-  password: string
-  permissions?: {
-    printing?: boolean
-    modifying?: boolean
-    copying?: boolean
-    annotating?: boolean
-  }
-}
+// Encryption removed from project
 
 export interface MergePDFOptions {
   files: File[]
@@ -223,26 +214,7 @@ export class PDFService {
     }
   }
 
-  /**
-   * Encrypt PDF file
-   */
-  static async encrypt(options: EncryptPDFOptions): Promise<Blob> {
-    const { file, password, permissions = {} } = options
-    
-    try {
-      const arrayBuffer = await file.arrayBuffer()
-      const pdfDoc = await PDFDocument.load(arrayBuffer)
-
-      // pdf-lib no soporta encriptación directa, por ahora solo guardamos el PDF
-      // La encriptación real se debe hacer con otra librería o en el backend
-      const pdfBytes = await pdfDoc.save()
-
-      return new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" })
-    } catch (error) {
-      console.error('Error encrypting PDF:', error)
-      throw new Error('Failed to encrypt PDF')
-    }
-  }
+  // encrypt method removed
 
   /**
    * Merge multiple PDF files

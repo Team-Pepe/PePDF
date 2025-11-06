@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { QrCode, FileImage, FileText, ImageIcon, Scissors, Archive, Lock, FilePlus } from "lucide-react"
+import { QrCode, FileImage, FileText, ImageIcon, Scissors, Archive, FilePlus } from "lucide-react"
 
 export default function HomePage() {
   const tools = [
@@ -47,13 +47,7 @@ export default function HomePage() {
       href: "/tools/compress",
       color: "text-primary",
     },
-    {
-      title: "Encriptar PDF",
-      description: "Protege tus documentos con contraseña",
-      icon: Lock,
-      href: "/tools/encrypt",
-      color: "text-destructive",
-    },
+    // Encrypt tool removed
     {
       title: "Unir PDFs",
       description: "Combina múltiples archivos PDF en uno solo",

@@ -11,7 +11,6 @@ import {
   FileText,
   ImageIcon,
   Archive,
-  Lock,
   FilePlus,
   Download,
   Trash2,
@@ -67,7 +66,6 @@ export default function DashboardPage() {
     { title: "PDF a Word", icon: FileText, href: "/tools/pdf-to-word", color: "text-accent" },
     { title: "Quitar Fondo", icon: Scissors, href: "/tools/remove-background", color: "text-chart-5" },
     { title: "Comprimir", icon: Archive, href: "/tools/compress", color: "text-primary" },
-    { title: "Encriptar PDF", icon: Lock, href: "/tools/encrypt", color: "text-secondary" },
     { title: "Unir PDFs", icon: FilePlus, href: "/tools/merge-pdf", color: "text-muted-foreground" },
   ]
 

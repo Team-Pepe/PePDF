@@ -54,7 +54,6 @@
     "next": "16.0.0",
     "next-themes": "latest",
     "pdf-compressor": "^1.0.5",
-    "pdf-encrypt": "^1.0.1",
     "pdf-lib": "latest",
     "pdfjs-dist": "latest",
     "qrcode": "latest",
