@@ -1,100 +1,86 @@
-# PePDF - Herramientas de Conversión de Archivos
+# ToolsApp
 
-Aplicación web moderna para convertir, editar y optimizar archivos PDF e imágenes.
-
-Aplicación web moderna para convertir, editar y optimizar archivos PDF e imágenes.
+Aplicación de herramientas web con arquitectura cliente-servidor.
 
 ## Estructura del Proyecto
 
-\`\`\`
-app/
-├── screens/              # Pantallas de la aplicación (UI)
-│   ├── qr-generator/
-│   ├── pdf-to-word/
-│   ├── pdf-to-images/
-│   ├── images-to-pdf/
-│   ├── compress/
-│   ├── merge-pdf/
-│   └── remove-background/
-├── tools/               # Rutas de Next.js
-└── page.tsx            # Página principal
-
-lib/
-├── services/           # Lógica de negocio modularizada
-│   ├── qr-service.ts      # Generación de códigos QR
-│   ├── pdf-service.ts     # Operaciones con PDF
-│   └── image-service.ts   # Procesamiento de imágenes
-├── file-storage.ts    # Gestión de archivos
-└── utils.ts           # Utilidades generales
-
-components/
-├── ui/                # Componentes de UI reutilizables
-└── tool-layout.tsx    # Layout para herramientas
-\`\`\`
-
-## Servicios Disponibles
-
-### QRService
-- Generación de códigos QR con logo personalizado
-- Configuración de tamaño y calidad
-
-### PDFService
-- **convertToWord**: Extrae texto de PDF y lo convierte
-- **convertToImages**: Convierte páginas PDF a imágenes (PNG, JPEG, WEBP)
-- **compress**: Reduce el tamaño de archivos PDF
-- **merge**: Combina múltiples PDFs en uno
-
-### ImageService
-- **compress**: Comprime imágenes manteniendo calidad
-- **removeBackground**: Elimina fondos de imágenes
-
-## Características
-
-- ✅ Generador de QR con logo personalizado
-- ✅ Conversión de imágenes a PDF
-- ✅ Conversión de PDF a imágenes (PNG, JPEG, WEBP)
-- ✅ Conversión de PDF a Word (con extracción de texto)
-- ✅ Comprimir archivos (imágenes y PDFs)
-- ✅ Encriptar PDFs con contraseña
-- ✅ Unir múltiples PDFs
-- ✅ Remover fondo de imágenes
-
-## Tecnologías
-
-- **Next.js 16** - Framework React
-- **TypeScript** - Tipado estático
-- **Tailwind CSS v4** - Estilos
-- **pdf-lib** - Manipulación de PDFs
-- **pdfjs-dist** - Renderizado y extracción de texto
-- **qrcode** - Generación de códigos QR
-- **browser-image-compression** - Compresión de imágenes
-- **jszip** - Creación de archivos ZIP
+```
+toolsapp/
+├── client/          # Aplicación Next.js (Frontend)
+├── server/          # Servidor Express (Backend)
+└── package.json     # Scripts raíz para manejar ambos
+```
 
 ## Instalación
 
-\`\`\`bash
+Instalar todas las dependencias (cliente y servidor):
+
+```bash
+npm run install:all
+```
+
+O instalar por separado:
+
+```bash
+# Cliente
+cd client
 npm install
-# o
-pnpm install
-\`\`\`
+
+# Servidor
+cd server
+npm install
+```
 
 ## Desarrollo
 
-\`\`\`bash
+### Iniciar ambos servidores
+
+```bash
 npm run dev
-# o
-pnpm dev
-\`\`\`
+```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+### Iniciar por separado
 
-## Arquitectura
+```bash
+# Cliente (puerto 3000)
+npm run dev:client
 
-La aplicación sigue una arquitectura modular con separación de responsabilidades:
+# Servidor (puerto 3001)
+npm run dev:server
+```
 
-1. **Screens**: Componentes de UI que manejan la interacción del usuario
-2. **Services**: Lógica de negocio pura, sin dependencias de UI
-3. **Components**: Componentes reutilizables de UI
-4. **Lib**: Utilidades y funciones auxiliares
+## Producción
 
-Esta estructura facilita el mantenimiento, testing y escalabilidad del proyecto.
+### Build
+
+```bash
+npm run build
+```
+
+### Iniciar en producción
+
+```bash
+npm start
+```
+
+## Tecnologías
+
+### Cliente (Next.js)
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- Radix UI
+
+### Servidor (Express)
+- Express
+- TypeScript
+- CORS
+- dotenv
+
+## API Endpoints
+
+El servidor corre en `http://localhost:3001`
+
+- `GET /api/health` - Health check
+- `GET /api/tools` - Lista de herramientas disponibles

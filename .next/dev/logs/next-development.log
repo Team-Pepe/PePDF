@@ -1,0 +1,735 @@
+[00:00:00.756] Server  LOG      ✓ Ready in 490ms
+[00:00:03.162] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.810] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:22.742] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:27.693] Browser ERROR   [v0] Error translating PDF: {}
+[00:00:35.154] Server  LOG      ✓ Compiled in 167ms
+[00:00:35.325] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:37.900] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.901] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.902] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.903] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.904] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.904] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.905] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.905] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.906] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.907] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.907] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.908] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.909] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.909] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.910] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.910] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.911] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.912] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.913] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.913] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.914] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.914] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.915] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.915] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.916] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.917] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.917] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.920] Server  ERROR    ⨯ ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:37.939] Server  LOG      ✓ Compiled in 69ms
+[00:00:38.263] Server  LOG      ✓ Compiled in 130ms
+[00:00:38.268] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/tools/pdf-translate/page.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:00:38.269] Browser ERROR   ./app/tools/pdf-translate/page.tsx:3:1
+Module not found: Can't resolve '@/app/screens/pdf-translate/pdf-translate'
+  1 | "use client"
+  2 |
+> 3 | import { PDFTranslateScreen } from "@/app/screens/pdf-translate/pdf-translate"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { ToolLayout } from "@/components/tool-layout"
+  5 |
+  6 | export const dynamic = "force-dynamic"
+
+Import map: aliased to relative './app/screens/pdf-translate/pdf-translate' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/tools/pdf-translate/page.tsx [Client Component Browser]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/tools/pdf-translate/page.tsx [Client Component SSR]
+    ./app/tools/pdf-translate/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:38.479] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:17.251] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:18.566] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

@@ -1,0 +1,3 @@
+{
+  "/api/encrypt-pdf/route": "app/api/encrypt-pdf/route.js"
+}
