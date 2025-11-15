@@ -9,8 +9,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Upload, X, Download } from "lucide-react"
 import { jsPDF } from "jspdf"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 
 export function ImagesToPDFScreen() {
   const router = useRouter()

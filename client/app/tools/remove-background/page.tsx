@@ -1,7 +1,7 @@
 "use client"
 
 import { RemoveBackgroundScreen } from "@/app/screens/remove-background/remove-background"
-import { ToolLayout } from "@/components/tool-layout"
+import { ToolLayout } from "@/app/components/tool-layout"
 
 export const dynamic = "force-dynamic"
 

@@ -1,5 +1,3 @@
-// Utility functions for managing generated files in localStorage
-
 export interface GeneratedFile {
   id: string
   name: string
@@ -12,7 +10,7 @@ export interface GeneratedFile {
 export function saveGeneratedFile(file: GeneratedFile) {
   const savedFiles = localStorage.getItem("generatedFiles")
   const files: GeneratedFile[] = savedFiles ? JSON.parse(savedFiles) : []
-  files.unshift(file) // Add to beginning
+  files.unshift(file)
   localStorage.setItem("generatedFiles", JSON.stringify(files))
 }
 

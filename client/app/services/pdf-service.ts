@@ -1,14 +1,13 @@
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib"
 import { Document, Packer, Paragraph, TextRun } from "docx"
 
-// Dynamic import for PDF.js to avoid SSR issues
 let pdfjsLib: any = null
 
-// Configure PDF.js worker only on client side
 if (typeof window !== "undefined") {
   import("pdfjs-dist").then((pdfjs) => {
     pdfjsLib = pdfjs
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js"
+    const workerUrl = new URL("pdfjs-dist/build/pdf.worker.mjs", import.meta.url)
+    pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(workerUrl, { type: "module" })
   })
 }
 
@@ -31,24 +30,21 @@ export interface CompressPDFOptions {
   quality?: 'low' | 'medium' | 'high'
 }
 
-// Encryption removed from project
-
 export interface MergePDFOptions {
   files: File[]
 }
 
 export class PDFService {
-  /**
-   * Extract text from PDF file
-   */
   static async extractTextFromPDF(file: File): Promise<string[]> {
     if (typeof window === "undefined") {
       throw new Error("PDF text extraction is only available on the client side")
     }
 
     if (!pdfjsLib) {
-      pdfjsLib = await import("pdfjs-dist")
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js"
+      const pdfjs = await import("pdfjs-dist")
+      pdfjsLib = pdfjs
+      const workerUrl = new URL("pdfjs-dist/build/pdf.worker.mjs", import.meta.url)
+      pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(workerUrl, { type: "module" })
     }
 
     try {
@@ -77,17 +73,12 @@ export class PDFService {
     }
   }
 
-  /**
-   * Convert PDF to Word document
-   */
   static async convertToWord(options: PDFToWordOptions): Promise<Blob> {
     const { file, preserveFormatting = true, includeImages = false, includeTables = false } = options
     
     try {
-      // Extract text from PDF
       const textPages = await this.extractTextFromPDF(file)
       
-      // Create Word document
       const doc = new Document({
         sections: [{
           properties: {},
@@ -101,7 +92,7 @@ export class PDFService {
                 }),
               ],
             }),
-            new Paragraph({ text: "" }), // Empty line
+            new Paragraph({ text: "" }),
             ...textPages.flatMap((pageText, index) => [
               new Paragraph({
                 children: [
@@ -112,7 +103,7 @@ export class PDFService {
                   }),
                 ],
               }),
-              new Paragraph({ text: "" }), // Empty line
+              new Paragraph({ text: "" }),
               ...this.groupSentencesIntoParagraphs(pageText.split(/[.!?]+/))
                 .map(paragraph => new Paragraph({
                   children: [
@@ -122,13 +113,12 @@ export class PDFService {
                     }),
                   ],
                 })),
-              new Paragraph({ text: "" }), // Empty line between pages
+              new Paragraph({ text: "" }),
             ])
           ],
         }],
       })
 
-      // Generate Word document
       const buffer = await Packer.toBuffer(doc)
       return new Blob([new Uint8Array(buffer)], { 
         type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
@@ -139,17 +129,16 @@ export class PDFService {
     }
   }
 
-  /**
-   * Convert PDF to images
-   */
   static async convertToImages(options: PDFToImagesOptions): Promise<Blob[]> {
     if (typeof window === "undefined") {
       throw new Error("PDF to images conversion is only available on the client side")
     }
 
     if (!pdfjsLib) {
-      pdfjsLib = await import("pdfjs-dist")
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js"
+      const pdfjs = await import("pdfjs-dist")
+      pdfjsLib = pdfjs
+      const workerUrl = new URL("pdfjs-dist/build/pdf.worker.mjs", import.meta.url)
+      pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(workerUrl, { type: "module" })
     }
 
     const { file, format, quality = 0.92, scale = 2.0 } = options
@@ -189,9 +178,6 @@ export class PDFService {
     }
   }
 
-  /**
-   * Compress PDF file
-   */
   static async compress(options: CompressPDFOptions): Promise<Blob> {
     const { file, quality = 'medium' } = options
     
@@ -199,7 +185,6 @@ export class PDFService {
       const arrayBuffer = await file.arrayBuffer()
       const pdfDoc = await PDFDocument.load(arrayBuffer)
 
-      // Compression settings based on quality
       const compressionOptions = {
         low: { useObjectStreams: false, addDefaultPage: false },
         medium: { useObjectStreams: true, addDefaultPage: false },
@@ -214,11 +199,6 @@ export class PDFService {
     }
   }
 
-  // encrypt method removed
-
-  /**
-   * Merge multiple PDF files
-   */
   static async merge(options: MergePDFOptions): Promise<Blob> {
     const { files } = options
     
@@ -240,9 +220,6 @@ export class PDFService {
     }
   }
 
-  /**
-   * Group sentences into paragraphs for better Word formatting
-   */
   private static groupSentencesIntoParagraphs(sentences: string[]): string[] {
     const paragraphs: string[] = []
     let currentParagraph = ""
@@ -268,9 +245,6 @@ export class PDFService {
     return paragraphs
   }
 
-  /**
-   * Validate if file is a valid PDF
-   */
   static async validatePDF(file: File): Promise<boolean> {
     try {
       const arrayBuffer = await file.arrayBuffer()
@@ -281,9 +255,6 @@ export class PDFService {
     }
   }
 
-  /**
-   * Get PDF metadata
-   */
   static async getPDFInfo(file: File): Promise<{
     pageCount: number
     title?: string
@@ -296,8 +267,10 @@ export class PDFService {
     }
 
     if (!pdfjsLib) {
-      pdfjsLib = await import("pdfjs-dist")
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js"
+      const pdfjs = await import("pdfjs-dist")
+      pdfjsLib = pdfjs
+      const workerUrl = new URL("pdfjs-dist/build/pdf.worker.mjs", import.meta.url)
+      pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(workerUrl, { type: "module" })
     }
 
     try {
@@ -318,9 +291,6 @@ export class PDFService {
     }
   }
 
-  /**
-   * Wrap text for better formatting
-   */
   private static wrapText(text: string, maxLength: number): string[] {
     const words = text.split(" ")
     const lines: string[] = []

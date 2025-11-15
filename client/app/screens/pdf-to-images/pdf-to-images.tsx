@@ -11,8 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Upload, Download, FileText, ImageIcon } from "lucide-react"
 import { PDFDocument } from "pdf-lib"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 import JSZip from "jszip"
 
 export function PDFToImagesScreen() {
@@ -45,7 +45,7 @@ export function PDFToImagesScreen() {
     setIsConverting(true)
     try {
       // Dynamic import to avoid SSR issues
-      const { PDFService } = await import("@/lib/services/pdf-service")
+      const { PDFService } = await import("@/app/services/pdf-service")
       
       const images = await PDFService.convertToImages({
         file: pdfFile,

@@ -1,7 +1,7 @@
 "use client"
 
 import { PDFToImagesScreen } from "@/app/screens/pdf-to-images/pdf-to-images"
-import { ToolLayout } from "@/components/tool-layout"
+import { ToolLayout } from "@/app/components/tool-layout"
 
 export const dynamic = "force-dynamic"
 

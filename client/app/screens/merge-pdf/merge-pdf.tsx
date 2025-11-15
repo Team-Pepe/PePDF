@@ -9,8 +9,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Upload, Download, X, FileText, GripVertical, Layers } from "lucide-react"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 
 export function MergePDFScreen() {
   const router = useRouter()
@@ -41,7 +41,7 @@ export function MergePDFScreen() {
 
     setIsMerging(true)
     try {
-      const { PDFService } = await import("@/lib/services/pdf-service")
+      const { PDFService } = await import("@/app/services/pdf-service")
       const blob = await PDFService.merge({ files: pdfFiles })
       const fileName = "merged-document.pdf"
 

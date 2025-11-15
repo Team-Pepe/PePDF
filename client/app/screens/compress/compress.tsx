@@ -10,9 +10,9 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Upload, Download, Archive } from "lucide-react"
 import { saveAs } from "file-saver"
-import { ImageService } from "@/lib/services/image-service"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { ImageService } from "@/app/services/image-service"
+import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 
 export function CompressScreen() {
   const router = useRouter()
@@ -49,7 +49,7 @@ export function CompressScreen() {
         fileName = file.name.replace(/\.(jpg|jpeg|png|webp)$/i, "-compressed.$1")
         fileType = "Imagen Comprimida"
       } else if (file.type === "application/pdf") {
-        const { PDFService } = await import("@/lib/services/pdf-service")
+        const { PDFService } = await import("@/app/services/pdf-service")
         compressedBlob = await PDFService.compress({ file })
         fileName = file.name.replace(".pdf", "-compressed.pdf")
         fileType = "PDF Comprimido"

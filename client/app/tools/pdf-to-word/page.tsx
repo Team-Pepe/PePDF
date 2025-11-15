@@ -1,7 +1,7 @@
 "use client"
 
 import { PDFToWordScreen } from "@/app/screens/pdf-to-word/pdf-to-word"
-import { ToolLayout } from "@/components/tool-layout"
+import { ToolLayout } from "@/app/components/tool-layout"
 
 export const dynamic = "force-dynamic"
 

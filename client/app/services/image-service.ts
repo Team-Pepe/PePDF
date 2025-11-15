@@ -25,7 +25,6 @@ export class ImageService {
   static async removeBackground(options: RemoveBackgroundOptions): Promise<Blob> {
     const { file } = options
 
-    // Create canvas for image processing
     const img = await this.loadImage(file)
     const canvas = document.createElement("canvas")
     const ctx = canvas.getContext("2d")
@@ -39,13 +38,11 @@ export class ImageService {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
     const data = imageData.data
 
-    // Simple background removal (white/light colors)
     for (let i = 0; i < data.length; i += 4) {
       const r = data[i]
       const g = data[i + 1]
       const b = data[i + 2]
 
-      // If pixel is close to white, make it transparent
       if (r > 200 && g > 200 && b > 200) {
         data[i + 3] = 0
       }

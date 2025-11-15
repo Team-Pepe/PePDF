@@ -1,7 +1,7 @@
 "use client"
 
 import { QRGeneratorScreen } from "@/app/screens/qr-generator/qr-generator"
-import { ToolLayout } from "@/components/tool-layout"
+import { ToolLayout } from "@/app/components/tool-layout"
 
 export const dynamic = "force-dynamic"
 

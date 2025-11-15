@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Upload, Scissors, Download } from "lucide-react"
-import { ImageService } from "@/lib/services/image-service"
+import { ImageService } from "@/app/services/image-service"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 
 export function RemoveBackgroundScreen() {
   const router = useRouter()

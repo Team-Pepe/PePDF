@@ -1,7 +1,7 @@
 "use client"
 
 import { CompressScreen } from "@/app/screens/compress/compress"
-import { ToolLayout } from "@/components/tool-layout"
+import { ToolLayout } from "@/app/components/tool-layout"
 
 export const dynamic = "force-dynamic"
 

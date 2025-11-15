@@ -10,8 +10,8 @@ import { Label } from "@/components/ui/label"
 import { Upload, Download, FileText, FileType } from "lucide-react"
 import { PDFDocument } from "pdf-lib"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 
 export function PDFToWordScreen() {
   const router = useRouter()
@@ -41,7 +41,7 @@ export function PDFToWordScreen() {
 
     setIsConverting(true)
     try {
-      const { PDFService } = await import("@/lib/services/pdf-service")
+      const { PDFService } = await import("@/app/services/pdf-service")
       const blob = await PDFService.convertToWord({ file: pdfFile })
       const fileName = pdfFile.name.replace(".pdf", ".docx")
 

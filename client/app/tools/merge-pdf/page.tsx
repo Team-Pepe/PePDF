@@ -1,7 +1,7 @@
 "use client"
 
 import { MergePDFScreen } from "@/app/screens/merge-pdf/merge-pdf"
-import { ToolLayout } from "@/components/tool-layout"
+import { ToolLayout } from "@/app/components/tool-layout"
 
 export const dynamic = "force-dynamic"
 

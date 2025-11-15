@@ -2,24 +2,21 @@ import imageCompression from "browser-image-compression"
 import { PDFDocument } from "pdf-lib"
 import JSZip from "jszip"
 
-// Type declaration for pdf-compressor
 declare module "pdf-compressor" {
   interface CompressionOptions {
     quality?: number
     level?: 'low' | 'medium' | 'high'
   }
-  
   class PDFCompressor {
     compress(buffer: ArrayBuffer, options?: CompressionOptions): Promise<ArrayBuffer>
   }
-  
   const pdfCompressor: PDFCompressor
 }
 
 import * as pdfCompressorModule from "pdf-compressor"
 
 export interface CompressionOptions {
-  quality?: number // 0-100 for images and PDFs
+  quality?: number
   maxSizeMB?: number
   maxWidthOrHeight?: number
   pdfCompressionLevel?: 'low' | 'medium' | 'high'
@@ -33,9 +30,6 @@ export interface CompressionResult {
 }
 
 export class CompressionService {
-  /**
-   * Compress an image file
-   */
   static async compressImage(
     file: File, 
     options: CompressionOptions = {}
@@ -68,9 +62,6 @@ export class CompressionService {
     }
   }
 
-  /**
-   * Compress a PDF file with advanced compression
-   */
   static async compressPDF(
     file: File, 
     options: CompressionOptions = {}
@@ -83,7 +74,6 @@ export class CompressionService {
     try {
       const arrayBuffer = await file.arrayBuffer()
       
-      // Try using pdf-compressor first for better compression
       try {
         const compressedBuffer = await (pdfCompressorModule as any).compress(arrayBuffer, {
           quality: quality / 100,
@@ -101,10 +91,7 @@ export class CompressionService {
       } catch (compressorError) {
         console.warn('pdf-compressor failed, falling back to pdf-lib:', compressorError)
         
-        // Fallback to pdf-lib with enhanced compression settings
         const pdfDoc = await PDFDocument.load(arrayBuffer)
-
-        // Apply aggressive compression settings
         const compressedPdfBytes = await pdfDoc.save({
           useObjectStreams: true,
           addDefaultPage: false,
@@ -127,9 +114,6 @@ export class CompressionService {
     }
   }
 
-  /**
-   * Compress multiple files into a ZIP
-   */
   static async compressToZip(
     files: File[], 
     zipName: string = 'compressed-files.zip'
@@ -147,7 +131,6 @@ export class CompressionService {
           const fileName = file.name.replace('.pdf', '-compressed.pdf')
           zip.file(fileName, compressed.blob)
         } else {
-          // Add file as-is if not compressible
           zip.file(file.name, file)
         }
       }
@@ -159,22 +142,14 @@ export class CompressionService {
     }
   }
 
-  /**
-   * Get file type and determine if it's compressible
-   */
   static isCompressible(file: File): boolean {
     return file.type.startsWith('image/') || file.type === 'application/pdf'
   }
 
-  /**
-   * Get estimated compression for preview
-   */
   static getEstimatedCompression(file: File, quality: number): number {
     if (file.type.startsWith('image/')) {
-      // Rough estimation based on quality
       return Math.max(10, 100 - quality)
     } else if (file.type === 'application/pdf') {
-      // PDFs typically compress 10-30%
       return 20
     }
     return 0
