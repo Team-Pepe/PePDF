@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Download, Upload, X } from "lucide-react"
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
 import { QRService } from "@/app/services/qr-service"
 import { saveGeneratedFile, generateFileId } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
@@ -22,6 +23,9 @@ export function QRGeneratorScreen() {
   const [logoSize, setLogoSize] = useState([30])
   const [qrImage, setQrImage] = useState<string | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
+  const [shape, setShape] = useState<'circle' | 'rounded'>('circle')
+  const [margin, setMargin] = useState([4])
+  const [errorLevel, setErrorLevel] = useState<'L' | 'M' | 'Q' | 'H'>('H')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +48,9 @@ export function QRGeneratorScreen() {
         url,
         logoImage,
         logoSize: logoSize[0],
+        shape,
+        margin: margin[0],
+        errorCorrectionLevel: errorLevel,
       })
       setQrImage(qrDataUrl)
     } catch (error) {
@@ -131,6 +138,39 @@ export function QRGeneratorScreen() {
               <Slider value={logoSize} onValueChange={setLogoSize} min={10} max={40} step={1} />
             </div>
           )}
+
+          <div className="space-y-2">
+            <Label>Forma del contorno</Label>
+            <Select value={shape} onValueChange={(v) => setShape(v as 'circle' | 'rounded')}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Selecciona la forma" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="circle">Circular (PNG)</SelectItem>
+                <SelectItem value="rounded">Rectángulo redondeado</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Margen del QR: {margin[0]}px</Label>
+            <Slider value={margin} onValueChange={setMargin} min={0} max={12} step={1} />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Corrección de errores</Label>
+            <Select value={errorLevel} onValueChange={(v) => setErrorLevel(v as 'L' | 'M' | 'Q' | 'H')}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Nivel" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="L">L (baja)</SelectItem>
+                <SelectItem value="M">M (media)</SelectItem>
+                <SelectItem value="Q">Q (alta)</SelectItem>
+                <SelectItem value="H">H (máxima)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
           <Button onClick={generateQR} className="w-full" size="lg" disabled={isGenerating}>
             {isGenerating ? "Generando..." : "Generar Código QR"}

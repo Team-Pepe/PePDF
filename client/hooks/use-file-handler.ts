@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/app/hooks/use-toast'
 import { validateFiles, type FileValidationResult } from '@/lib/utils/file-utils'
 import { APP_CONFIG } from '@/lib/config/app-config'
 

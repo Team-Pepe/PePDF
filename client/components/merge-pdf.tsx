@@ -10,8 +10,8 @@ import { Label } from "@/components/ui/label"
 import { Upload, Download, X, FileText, GripVertical, Layers } from "lucide-react"
 import { PDFDocument } from "pdf-lib"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 
 export function MergePDF() {
   const router = useRouter()

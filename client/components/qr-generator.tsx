@@ -11,8 +11,8 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Download, Upload, X } from "lucide-react"
 import QRCode from "qrcode"
-import { saveGeneratedFile, generateFileId } from "@/lib/file-storage"
-import { useToast } from "@/hooks/use-toast"
+import { saveGeneratedFile, generateFileId } from "@/app/services/file-storage"
+import { useToast } from "@/app/hooks/use-toast"
 
 export function QRGenerator() {
   const router = useRouter()

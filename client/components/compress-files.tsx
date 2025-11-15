@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Switch } from '@/components/ui/switch'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/app/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 import { 
   Download, 
@@ -15,8 +15,8 @@ import {
   Settings
 } from 'lucide-react'
 import { saveAs } from 'file-saver'
-import { saveGeneratedFile, generateFileId } from '@/lib/file-storage'
-import { CompressionService } from '@/lib/services/compression-service'
+import { saveGeneratedFile, generateFileId } from '@/app/services/file-storage'
+import { CompressionService } from '@/app/services/compression-service'
 import { FileUpload } from '@/components/ui/file-upload'
 import { ProcessingResults, type ProcessingResult } from '@/components/ui/processing-results'
 import { APP_CONFIG } from '@/lib/config/app-config'

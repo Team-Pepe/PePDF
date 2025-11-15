@@ -209,7 +209,7 @@ export class PDFService {
         const arrayBuffer = await file.arrayBuffer()
         const pdf = await PDFDocument.load(arrayBuffer)
         const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices())
-        copiedPages.forEach((page) => mergedPdf.addPage(page))
+        copiedPages.forEach((page: any) => mergedPdf.addPage(page))
       }
 
       const pdfBytes = await mergedPdf.save()

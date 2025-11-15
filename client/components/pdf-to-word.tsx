@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Progress } from "@/components/ui/progress"
 import { Upload, Download, FileText, Loader2, AlertCircle, CheckCircle } from "lucide-react"
 import { saveAs } from "file-saver"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/app/hooks/use-toast"
 import { formatBytes } from "@/lib/utils/file-utils"
 
 export function PDFToWord() {
@@ -47,7 +47,7 @@ export function PDFToWord() {
     if (pdfFiles.length > 0) {
       try {
         // Dynamic import to avoid SSR issues
-        const { PDFService } = await import("@/lib/services/pdf-service")
+        const { PDFService } = await import("@/app/services/pdf-service")
         const text = await PDFService.extractTextFromPDF(pdfFiles[0])
         setExtractedText(text.join(" ").substring(0, 500) + (text.join(" ").length > 500 ? "..." : ""))
       } catch (error) {
@@ -71,7 +71,7 @@ export function PDFToWord() {
 
         try {
           // Dynamic import to avoid SSR issues
-          const { PDFService } = await import("@/lib/services/pdf-service")
+          const { PDFService } = await import("@/app/services/pdf-service")
           
           const result = await PDFService.convertToWord({
             file,

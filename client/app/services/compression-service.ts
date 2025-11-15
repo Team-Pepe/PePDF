@@ -2,19 +2,6 @@ import imageCompression from "browser-image-compression"
 import { PDFDocument } from "pdf-lib"
 import JSZip from "jszip"
 
-declare module "pdf-compressor" {
-  interface CompressionOptions {
-    quality?: number
-    level?: 'low' | 'medium' | 'high'
-  }
-  class PDFCompressor {
-    compress(buffer: ArrayBuffer, options?: CompressionOptions): Promise<ArrayBuffer>
-  }
-  const pdfCompressor: PDFCompressor
-}
-
-import * as pdfCompressorModule from "pdf-compressor"
-
 export interface CompressionOptions {
   quality?: number
   maxSizeMB?: number
@@ -74,39 +61,21 @@ export class CompressionService {
     try {
       const arrayBuffer = await file.arrayBuffer()
       
-      try {
-        const compressedBuffer = await (pdfCompressorModule as any).compress(arrayBuffer, {
-          quality: quality / 100,
-          level: pdfCompressionLevel
-        })
-        
-        const blob = new Blob([compressedBuffer], { type: "application/pdf" })
-        
-        return {
-          blob,
-          originalSize: file.size,
-          compressedSize: blob.size,
-          compressionRatio: ((file.size - blob.size) / file.size) * 100
-        }
-      } catch (compressorError) {
-        console.warn('pdf-compressor failed, falling back to pdf-lib:', compressorError)
-        
-        const pdfDoc = await PDFDocument.load(arrayBuffer)
-        const compressedPdfBytes = await pdfDoc.save({
-          useObjectStreams: true,
-          addDefaultPage: false,
-          objectsPerTick: 50,
-          updateFieldAppearances: false,
-        })
+      const pdfDoc = await PDFDocument.load(arrayBuffer)
+      const compressedPdfBytes = await pdfDoc.save({
+        useObjectStreams: true,
+        addDefaultPage: false,
+        objectsPerTick: 50,
+        updateFieldAppearances: false,
+      })
 
-        const blob = new Blob([new Uint8Array(compressedPdfBytes)], { type: "application/pdf" })
-        
-        return {
-          blob,
-          originalSize: file.size,
-          compressedSize: blob.size,
-          compressionRatio: ((file.size - blob.size) / file.size) * 100
-        }
+      const blob = new Blob([new Uint8Array(compressedPdfBytes)], { type: "application/pdf" })
+      
+      return {
+        blob,
+        originalSize: file.size,
+        compressedSize: blob.size,
+        compressionRatio: ((file.size - blob.size) / file.size) * 100
       }
     } catch (error) {
       console.error('Error compressing PDF:', error)
