@@ -13,7 +13,12 @@ export async function GET() {
   try {
     const connectionString = process.env.DATABASE_URL
     if (!connectionString) throw new Error("DATABASE_URL no está configurado")
-    const pool = new Pool({ connectionString, max: 1 })
+    const useSSL = process.env.DATABASE_SSL === "true"
+    const pool = new Pool({
+      connectionString,
+      max: 1,
+      ssl: useSSL ? { rejectUnauthorized: false } : undefined,
+    })
     const { rows } = await pool.query("SELECT 1 AS ok")
     await pool.end()
     if (rows?.[0]?.ok === 1) dbResult.ok = true
