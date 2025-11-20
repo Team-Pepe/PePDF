@@ -15,12 +15,39 @@ export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email && password) {
-      localStorage.setItem("user", JSON.stringify({ email, loggedIn: true }))
+    setError("")
+    setLoading(true)
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || "Error al iniciar sesión")
+        setLoading(false)
+        return
+      }
+
+      // Guardar usuario en localStorage
+      localStorage.setItem("user", JSON.stringify({ ...data.user, loggedIn: true }))
+
+      // Redireccionar al dashboard
       router.push("/dashboard")
+    } catch (err: any) {
+      setError("Error de conexión. Por favor intenta de nuevo.")
+      setLoading(false)
     }
   }
 
@@ -47,6 +74,11 @@ export default function LoginPage() {
           </CardHeader>
           <form onSubmit={handleLogin}>
             <CardContent className="space-y-4">
+              {error && (
+                <div className="bg-destructive/15 text-destructive px-4 py-3 rounded-md text-sm">
+                  {error}
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="email">Correo electrónico</Label>
                 <Input
@@ -78,8 +110,8 @@ export default function LoginPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <Button type="submit" className="w-full" size="lg">
-                Iniciar Sesión
+              <Button type="submit" className="w-full" size="lg" disabled={loading}>
+                {loading ? "Iniciando sesión..." : "Iniciar Sesión"}
               </Button>
               <div className="text-sm text-center text-muted-foreground">
                 ¿No tienes una cuenta?{" "}

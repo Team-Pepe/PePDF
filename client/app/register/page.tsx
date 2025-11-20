@@ -17,12 +17,46 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email && password && password === confirmPassword && name) {
-      localStorage.setItem("user", JSON.stringify({ email, name, loggedIn: true }))
+    setError("")
+
+    // Validación de contraseñas
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden")
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || "Error al registrar usuario")
+        setLoading(false)
+        return
+      }
+
+      // Guardar usuario en localStorage
+      localStorage.setItem("user", JSON.stringify({ ...data.user, loggedIn: true }))
+
+      // Redireccionar al dashboard
       router.push("/dashboard")
+    } catch (err: any) {
+      setError("Error de conexión. Por favor intenta de nuevo.")
+      setLoading(false)
     }
   }
 
@@ -49,6 +83,11 @@ export default function RegisterPage() {
           </CardHeader>
           <form onSubmit={handleRegister}>
             <CardContent className="space-y-4">
+              {error && (
+                <div className="bg-destructive/15 text-destructive px-4 py-3 rounded-md text-sm">
+                  {error}
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="name">Nombre completo</Label>
                 <Input
@@ -99,8 +138,8 @@ export default function RegisterPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <Button type="submit" className="w-full" size="lg">
-                Crear Cuenta
+              <Button type="submit" className="w-full" size="lg" disabled={loading}>
+                {loading ? "Creando cuenta..." : "Crear Cuenta"}
               </Button>
               <div className="text-sm text-center text-muted-foreground">
                 ¿Ya tienes una cuenta?{" "}
