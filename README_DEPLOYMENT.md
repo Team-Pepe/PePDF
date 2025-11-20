@@ -101,6 +101,34 @@ CREATE TABLE files (
 );
 ```
 
+## 📦 Configurar S3 (Para almacenar archivos)
+
+### 1. Crear bucket S3
+
+```bash
+aws s3 mb s3://pepdf-files --region us-east-1
+```
+
+O desde AWS Console: S3 → Create bucket → `pepdf-files`
+
+### 2. Crear IAM Role para EC2
+
+1. IAM Console → Roles → Create role
+2. Trusted entity: EC2
+3. Attach la política en `deployment/iam-policy.json`
+4. Role name: `PePDF-EC2-S3-Role`
+5. Asignar role a tu instancia EC2
+
+### 3. Configurar variables de entorno
+
+```env
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=pepdf-files
+# No necesitas AWS_ACCESS_KEY si usas IAM Role
+```
+
+Ver guía completa en `deployment/s3-setup.md`
+
 ## 🔧 Comandos Útiles
 
 ```bash

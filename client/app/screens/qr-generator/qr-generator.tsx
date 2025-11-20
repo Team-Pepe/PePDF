@@ -9,10 +9,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
-import { Download, Upload, X } from "lucide-react"
+import { Download, Upload, X, Cloud } from "lucide-react"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
 import { QRService } from "@/app/services/qr-service"
-import { saveGeneratedFile, generateFileId } from "@/app/services/file-storage"
+import { uploadToS3AndSave } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
 
 export function QRGeneratorScreen() {
@@ -65,31 +65,45 @@ export function QRGeneratorScreen() {
     }
   }
 
-  const downloadQR = () => {
+  const downloadQR = async () => {
     if (!qrImage) return
 
-    const link = document.createElement("a")
-    link.download = "qr-code.png"
-    link.href = qrImage
-    link.click()
+    try {
+      // Descargar localmente
+      const link = document.createElement("a")
+      link.download = "qr-code.png"
+      link.href = qrImage
+      link.click()
 
-    saveGeneratedFile({
-      id: generateFileId(),
-      name: "qr-code.png",
-      type: "Código QR",
-      date: new Date().toLocaleDateString(),
-      size: "~50 KB",
-      downloadUrl: qrImage,
-    })
+      // Subir a S3 automáticamente
+      toast({
+        title: "Guardando en la nube...",
+        description: "Tu QR se está subiendo a S3",
+      })
 
-    toast({
-      title: "QR generado exitosamente",
-      description: "El archivo se guardó en tu dashboard",
-    })
+      await uploadToS3AndSave(
+        qrImage,
+        "qr-code.png",
+        "image/png",
+        "qr"
+      )
 
-    setTimeout(() => {
-      router.push("/dashboard")
-    }, 1000)
+      toast({
+        title: "✅ QR guardado exitosamente",
+        description: "El archivo se guardó en S3 y en tu dashboard",
+      })
+
+      setTimeout(() => {
+        router.push("/dashboard")
+      }, 1500)
+    } catch (error) {
+      console.error("Error uploading to S3:", error)
+      toast({
+        title: "Error al guardar en S3",
+        description: "El QR se descargó pero no se pudo subir a la nube",
+        variant: "destructive",
+      })
+    }
   }
 
   return (
@@ -191,8 +205,8 @@ export function QRGeneratorScreen() {
             </div>
             {qrImage && (
               <Button onClick={downloadQR} className="w-full bg-transparent" variant="outline">
-                <Download className="w-4 h-4 mr-2" />
-                Descargar QR
+                <Cloud className="w-4 h-4 mr-2" />
+                Descargar y Guardar en S3
               </Button>
             )}
           </div>

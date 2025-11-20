@@ -18,6 +18,13 @@ DB_PORT=5432
 DB_NAME=nombre_de_tu_database
 DB_USER=tu_usuario_postgres
 DB_PASSWORD=tu_password_seguro
+
+# AWS S3 Configuration
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=pepdf-files
+# Solo para desarrollo local (en EC2 usa IAM Role):
+# AWS_ACCESS_KEY_ID=tu_access_key
+# AWS_SECRET_ACCESS_KEY=tu_secret_key
 ```
 
 **Ejemplo con valores reales:**
