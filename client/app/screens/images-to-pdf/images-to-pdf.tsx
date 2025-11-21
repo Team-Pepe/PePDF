@@ -157,7 +157,7 @@ export function ImagesToPDFScreen() {
 
           <Button onClick={convertToPDF} className="w-full" size="lg">
             <Download className="w-4 h-4 mr-2" />
-            Convertir a PDF
+            Convertir a PDF y enviar a s3
           </Button>
         </>
       )}
