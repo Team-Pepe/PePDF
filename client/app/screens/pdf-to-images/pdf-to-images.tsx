@@ -72,17 +72,32 @@ export function PDFToImagesScreen() {
         r.readAsDataURL(b)
       })
 
-      try {
-        const dataUrl = await toDataURL(zipBlob)
-        const saved = await uploadToS3AndSave(dataUrl, zipFileName, "application/zip", "image")
+      const mimeMap: Record<typeof format, string> = {
+        png: "image/png",
+        jpeg: "image/jpeg",
+        webp: "image/webp",
+      }
+
+      const uploadResults = await Promise.allSettled(
+        images.map(async (blob, index) => {
+          const dataUrl = await toDataURL(blob)
+          const pageFileName = `${baseName}-page-${index + 1}.${format}`
+          return uploadToS3AndSave(dataUrl, pageFileName, mimeMap[format], "image")
+        })
+      )
+
+      const successCount = uploadResults.filter((r) => r.status === "fulfilled").length
+      const failCount = uploadResults.length - successCount
+
+      if (successCount > 0 && failCount === 0) {
         toast({
           title: "Extraído y guardado en S3",
-          description: `Se extrajeron ${pageCount} páginas como imágenes ${format.toUpperCase()} · Archivo: ${saved.name}`,
+          description: `Se subieron ${successCount}/${images.length} imágenes ${format.toUpperCase()} a S3 y se descargó el ZIP`,
         })
-      } catch (e) {
+      } else {
         toast({
-          title: "Descargado, pero fallo al subir a S3",
-          description: `Imágenes ${format.toUpperCase()} extraídas. Intenta subir más tarde.`,
+          title: "Descargado, con fallos al subir a S3",
+          description: `ZIP descargado. Subidas exitosas: ${successCount}/${images.length}. Reintenta más tarde para las restantes`,
           variant: "destructive",
         })
       }
