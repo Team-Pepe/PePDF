@@ -75,7 +75,7 @@ export function ImagesToPDFScreen() {
       })
 
       const dataUrl = await toDataURL(pdfBlob)
-      await uploadToS3AndSave(
+      const saved = await uploadToS3AndSave(
         dataUrl,
         "images-to-pdf.pdf",
         "application/pdf",
@@ -83,8 +83,8 @@ export function ImagesToPDFScreen() {
       )
 
       toast({
-        title: "PDF creado y guardado en S3",
-        description: "Disponible en tu dashboard",
+        title: "Subida al bucket S3 exitosa",
+        description: `Archivo: ${saved.name}`,
       })
 
       setTimeout(() => {
