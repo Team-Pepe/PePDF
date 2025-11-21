@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Upload, X, Download } from "lucide-react"
 import { jsPDF } from "jspdf"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { uploadToS3AndSave } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
 
 export function ImagesToPDFScreen() {
@@ -58,25 +58,33 @@ export function ImagesToPDFScreen() {
       }
 
       const pdfBlob = pdf.output("blob")
-      const pdfUrl = URL.createObjectURL(pdfBlob)
 
       const link = document.createElement("a")
       link.download = "images-to-pdf.pdf"
-      link.href = pdfUrl
+      link.href = URL.createObjectURL(pdfBlob)
       link.click()
 
-      saveGeneratedFile({
-        id: generateFileId(),
-        name: "images-to-pdf.pdf",
-        type: "PDF",
-        date: new Date().toLocaleDateString(),
-        size: formatFileSize(pdfBlob.size),
-        downloadUrl: pdfUrl,
+      const toDataURL = (blob: Blob) => new Promise<string>((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onloadend = () => {
+          const result = reader.result as string
+          resolve(result)
+        }
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
       })
 
+      const dataUrl = await toDataURL(pdfBlob)
+      await uploadToS3AndSave(
+        dataUrl,
+        "images-to-pdf.pdf",
+        "application/pdf",
+        "pdf"
+      )
+
       toast({
-        title: "PDF creado exitosamente",
-        description: "El archivo se guardó en tu dashboard",
+        title: "PDF creado y guardado en S3",
+        description: "Disponible en tu dashboard",
       })
 
       setTimeout(() => {
