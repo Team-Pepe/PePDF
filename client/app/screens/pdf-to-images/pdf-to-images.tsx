@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Upload, Download, FileText, ImageIcon } from "lucide-react"
 import { PDFDocument } from "pdf-lib"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { uploadToS3AndSave } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
 import JSZip from "jszip"
 
@@ -65,18 +65,27 @@ export function PDFToImagesScreen() {
 
       saveAs(zipBlob, zipFileName)
 
-      saveGeneratedFile({
-        id: generateFileId(),
-        name: zipFileName,
-        type: `Imágenes ${format.toUpperCase()}`,
-        date: new Date().toLocaleDateString(),
-        size: formatFileSize(zipBlob.size),
+      const toDataURL = (b: Blob) => new Promise<string>((resolve, reject) => {
+        const r = new FileReader()
+        r.onloadend = () => resolve(r.result as string)
+        r.onerror = reject
+        r.readAsDataURL(b)
       })
 
-      toast({
-        title: "Conversión exitosa",
-        description: `Se extrajeron ${pageCount} páginas como imágenes ${format.toUpperCase()}`,
-      })
+      try {
+        const dataUrl = await toDataURL(zipBlob)
+        const saved = await uploadToS3AndSave(dataUrl, zipFileName, "application/zip", "image")
+        toast({
+          title: "Extraído y guardado en S3",
+          description: `Se extrajeron ${pageCount} páginas como imágenes ${format.toUpperCase()} · Archivo: ${saved.name}`,
+        })
+      } catch (e) {
+        toast({
+          title: "Descargado, pero fallo al subir a S3",
+          description: `Imágenes ${format.toUpperCase()} extraídas. Intenta subir más tarde.`,
+          variant: "destructive",
+        })
+      }
 
       setTimeout(() => {
         router.push("/dashboard")
@@ -164,7 +173,7 @@ export function PDFToImagesScreen() {
 
           <Button onClick={convertToImages} className="w-full" size="lg" disabled={isConverting}>
             <Download className="w-4 h-4 mr-2" />
-            {isConverting ? "Convirtiendo..." : "Extraer como Imágenes"}
+            {isConverting ? "Convirtiendo..." : "Extraer, Descargar y Guardar en S3"}
           </Button>
         </>
       )}

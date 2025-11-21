@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Upload, Scissors, Download } from "lucide-react"
 import { ImageService } from "@/app/services/image-service"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { uploadToS3AndSave, formatFileSize } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
 
 export function RemoveBackgroundScreen() {
@@ -60,32 +60,41 @@ export function RemoveBackgroundScreen() {
     }
   }
 
-  const downloadImage = () => {
+  const downloadImage = async () => {
     if (!processedImage) return
 
-    fetch(processedImage)
-      .then((res) => res.blob())
-      .then((blob) => {
-        const fileName = originalFile?.name.replace(/\.(jpg|jpeg|png|webp)$/i, "-no-bg.png") || "image-no-bg.png"
-        saveAs(blob, fileName)
+    try {
+      const res = await fetch(processedImage)
+      const blob = await res.blob()
+      const fileName = originalFile?.name.replace(/\.(jpg|jpeg|png|webp)$/i, "-no-bg.png") || "image-no-bg.png"
+      saveAs(blob, fileName)
 
-        saveGeneratedFile({
-          id: generateFileId(),
-          name: fileName,
-          type: "Imagen sin fondo",
-          date: new Date().toLocaleDateString(),
-          size: formatFileSize(blob.size),
-        })
-
-        toast({
-          title: "Imagen descargada",
-          description: "El archivo se guardó en tu dashboard",
-        })
-
-        setTimeout(() => {
-          router.push("/dashboard")
-        }, 1000)
+      const toDataURL = (b: Blob) => new Promise<string>((resolve, reject) => {
+        const r = new FileReader()
+        r.onloadend = () => resolve(r.result as string)
+        r.onerror = reject
+        r.readAsDataURL(b)
       })
+
+      try {
+        const dataUrl = await toDataURL(blob)
+        const saved = await uploadToS3AndSave(dataUrl, fileName, "image/png", "image")
+        toast({
+          title: "Descargada y guardada en S3",
+          description: `Tamaño: ${formatFileSize(blob.size)} · Archivo: ${saved.name}`,
+        })
+      } catch (e) {
+        toast({
+          title: "Descargada, pero fallo al subir a S3",
+          description: `Tamaño: ${formatFileSize(blob.size)}. Intenta de nuevo más tarde.`,
+          variant: "destructive",
+        })
+      }
+
+      setTimeout(() => {
+        router.push("/dashboard")
+      }, 1000)
+    } catch {}
   }
 
   return (
@@ -145,7 +154,7 @@ export function RemoveBackgroundScreen() {
             {processedImage && (
               <Button onClick={downloadImage} variant="outline" className="flex-1 bg-transparent" size="lg">
                 <Download className="w-4 h-4 mr-2" />
-                Descargar
+                Descargar y Guardar en S3
               </Button>
             )}
           </div>

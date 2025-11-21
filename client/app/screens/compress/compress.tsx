@@ -11,7 +11,7 @@ import { Slider } from "@/components/ui/slider"
 import { Upload, Download, Archive } from "lucide-react"
 import { saveAs } from "file-saver"
 import { ImageService } from "@/app/services/image-service"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { uploadToS3AndSave, formatFileSize } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
 
 export function CompressScreen() {
@@ -59,18 +59,28 @@ export function CompressScreen() {
 
       saveAs(compressedBlob, fileName)
 
-      saveGeneratedFile({
-        id: generateFileId(),
-        name: fileName,
-        type: fileType,
-        date: new Date().toLocaleDateString(),
-        size: formatFileSize(compressedBlob.size),
+      const toDataURL = (blob: Blob) => new Promise<string>((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onloadend = () => resolve(reader.result as string)
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
       })
 
-      toast({
-        title: "Archivo comprimido",
-        description: `Reducido de ${formatFileSize(file.size)} a ${formatFileSize(compressedBlob.size)}`,
-      })
+      try {
+        const dataUrl = await toDataURL(compressedBlob)
+        const category = file.type.startsWith("image/") ? "image" : "pdf"
+        const saved = await uploadToS3AndSave(dataUrl, fileName, file.type, category)
+        toast({
+          title: "Comprimido y guardado en S3",
+          description: `Reducido de ${formatFileSize(file.size)} a ${formatFileSize(compressedBlob.size)} · Archivo: ${saved.name}`,
+        })
+      } catch (e) {
+        toast({
+          title: "Descargado, pero fallo al subir a S3",
+          description: `Reducido de ${formatFileSize(file.size)} a ${formatFileSize(compressedBlob.size)}. Intenta de nuevo más tarde.`,
+          variant: "destructive",
+        })
+      }
 
       setTimeout(() => {
         router.push("/dashboard")
@@ -148,7 +158,7 @@ export function CompressScreen() {
 
           <Button onClick={compressFile} className="w-full" size="lg" disabled={isCompressing}>
             <Download className="w-4 h-4 mr-2" />
-            {isCompressing ? "Comprimiendo..." : "Comprimir y Descargar"}
+            {isCompressing ? "Comprimiendo..." : "Comprimir, Descargar y Guardar en S3"}
           </Button>
         </>
       )}

@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Upload, Download, FileText, FileType } from "lucide-react"
 import { PDFDocument } from "pdf-lib"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { uploadToS3AndSave } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
 
 export function PDFToWordScreen() {
@@ -47,18 +47,32 @@ export function PDFToWordScreen() {
 
       saveAs(blob, fileName)
 
-      saveGeneratedFile({
-        id: generateFileId(),
-        name: fileName,
-        type: "Documento Convertido",
-        date: new Date().toLocaleDateString(),
-        size: formatFileSize(blob.size),
+      const toDataURL = (b: Blob) => new Promise<string>((resolve, reject) => {
+        const r = new FileReader()
+        r.onloadend = () => resolve(r.result as string)
+        r.onerror = reject
+        r.readAsDataURL(b)
       })
 
-      toast({
-        title: "Conversión exitosa",
-        description: "El documento se ha convertido con el texto extraído",
-      })
+      try {
+        const dataUrl = await toDataURL(blob)
+        const saved = await uploadToS3AndSave(
+          dataUrl,
+          fileName,
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "word"
+        )
+        toast({
+          title: "Convertido y guardado en S3",
+          description: `Archivo: ${saved.name}`,
+        })
+      } catch (e) {
+        toast({
+          title: "Descargado, pero fallo al subir a S3",
+          description: "El documento se convirtió pero no se pudo subir",
+          variant: "destructive",
+        })
+      }
 
       setTimeout(() => {
         router.push("/dashboard")
@@ -131,7 +145,7 @@ export function PDFToWordScreen() {
 
           <Button onClick={convertToWord} className="w-full" size="lg" disabled={isConverting}>
             <Download className="w-4 h-4 mr-2" />
-            {isConverting ? "Convirtiendo..." : "Convertir a Documento"}
+            {isConverting ? "Convirtiendo..." : "Convertir, Descargar y Guardar en S3"}
           </Button>
         </>
       )}

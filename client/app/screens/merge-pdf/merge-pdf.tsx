@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Upload, Download, X, FileText, GripVertical, Layers } from "lucide-react"
 import { saveAs } from "file-saver"
-import { saveGeneratedFile, generateFileId, formatFileSize } from "@/app/services/file-storage"
+import { uploadToS3AndSave } from "@/app/services/file-storage"
 import { useToast } from "@/app/hooks/use-toast"
 
 export function MergePDFScreen() {
@@ -47,18 +47,27 @@ export function MergePDFScreen() {
 
       saveAs(blob, fileName)
 
-      saveGeneratedFile({
-        id: generateFileId(),
-        name: fileName,
-        type: "PDF Unido",
-        date: new Date().toLocaleDateString(),
-        size: formatFileSize(blob.size),
+      const toDataURL = (b: Blob) => new Promise<string>((resolve, reject) => {
+        const r = new FileReader()
+        r.onloadend = () => resolve(r.result as string)
+        r.onerror = reject
+        r.readAsDataURL(b)
       })
 
-      toast({
-        title: "PDFs unidos exitosamente",
-        description: `Se combinaron ${pdfFiles.length} archivos`,
-      })
+      try {
+        const dataUrl = await toDataURL(blob)
+        const saved = await uploadToS3AndSave(dataUrl, fileName, "application/pdf", "pdf")
+        toast({
+          title: "Unido y guardado en S3",
+          description: `Se combinaron ${pdfFiles.length} archivos · Archivo: ${saved.name}`,
+        })
+      } catch (e) {
+        toast({
+          title: "Descargado, pero fallo al subir a S3",
+          description: `Se combinaron ${pdfFiles.length} archivos. Intenta subir más tarde.`,
+          variant: "destructive",
+        })
+      }
 
       setTimeout(() => {
         router.push("/dashboard")
@@ -148,7 +157,7 @@ export function MergePDFScreen() {
 
           <Button onClick={mergePDFs} className="w-full" size="lg" disabled={isMerging}>
             <Download className="w-4 h-4 mr-2" />
-            {isMerging ? "Uniendo PDFs..." : "Unir PDFs"}
+            {isMerging ? "Uniendo PDFs..." : "Unir, Descargar y Guardar en S3"}
           </Button>
         </>
       )}
